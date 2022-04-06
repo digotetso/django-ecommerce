@@ -14,4 +14,4 @@ def home(request):
 
     print(products)
 
-    return render(request, 'store/home.html', context)
+    return render(request, 'home.html', context)
