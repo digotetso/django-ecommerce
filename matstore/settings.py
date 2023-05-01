@@ -74,8 +74,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'matstore.wsgi.application'
-# using my custom user Model
 
+# using my custom user Model
 AUTH_USER_MODEL = 'accounts.Account'  # my_app.Model
 
 # Database

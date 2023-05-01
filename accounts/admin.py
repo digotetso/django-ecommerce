@@ -14,8 +14,7 @@ class AccountAdmin(UserAdmin):
     readonly_fields = ('last_login', 'date_joined')
     ordering = ('-date_joined',)
 
-    # since we are using a custom model below is required
-
+    # since we are using a custom user model below is required
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()

@@ -24,7 +24,7 @@ class MyAccountManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name
         )
-
+        # set_password --> hashes the pwd
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -53,10 +53,9 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=100, unique=True)
-    username = models.CharField(max_length=50)
+   
 
-    # the following are required
-
+    # the following are required fields
     date_joined = models.DateField(auto_now_add=True)
     last_login = models.DateField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
@@ -65,7 +64,6 @@ class Account(AbstractBaseUser):
     is_superadmin = models.BooleanField(default=False)
 
     # what to use as username when login
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 

@@ -6,7 +6,7 @@ from .models import Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('category_name',)}
+    prepopulated_fields = {'slug': ('category_name',)} #auto populated in categories slug
     list_display = ('category_name', 'slug', 'cat_image')
 
 

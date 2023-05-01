@@ -14,8 +14,9 @@ from cart.models import CartItem
 
 # Create your views here.
 
-
+# DISPLAY ALL PRODUCTS ON STORE PAGE OR BY CATEGORY
 def store(request, category_slug=None):
+    # category_slug ---> passed from url
     print(f'some slugs: {category_slug}')
 
     categories = None
@@ -53,11 +54,12 @@ def store(request, category_slug=None):
 
     return render(request, 'store/store.html', context)
 
-
+# DISPLAY DETAILED PRODUCT PAGE, WHEN CLICKING ON A PRODUCT CARD
 def product_detail(request, category_slug, product_slug):
 
     try:
         # since  'category' a foreign key --> category__slug
+        # for url; "/store/t-shirt/great-tshirt"
         single_product = Product.objects.get(
             category__slug=category_slug, slug=product_slug)  # e.g /shoes/sneaker ---> category_slug/product_slug
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(
@@ -65,6 +67,9 @@ def product_detail(request, category_slug, product_slug):
     except Exception as e:
         raise e
 
+    print(f'This is a sngle product: {single_product}')
+
+    print(f'variations: {single_product.variation_set.all()}')
     context = {
         'single_product':  single_product,
         'in_cart': in_cart
@@ -73,7 +78,6 @@ def product_detail(request, category_slug, product_slug):
     return render(request, 'store/product-detail.html', context)
 
 # Implement search functionality...
-
 
 def search(request):
     if 'keyword' in request.GET:
