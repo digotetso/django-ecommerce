@@ -103,7 +103,7 @@ def add_cart(request, product_id):
             cart_item.variations.add(*product_variation)
         cart_item.save()
 
-    return redirect('cart')  # Goto cart page
+    return redirect('cart')  # Goto cart page --> path('', views.cart, name='cart')
 
 
 def remove_cart(request, product_id):
@@ -126,9 +126,10 @@ def remove_cart_item(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart_item = CartItem.objects.get(product=product, cart=cart)
     cart_item.delete()
-    return redirect('cart')
+    return redirect('cart')  # --> path('', views.cart, name='cart')
 
 
+# triggered by : path('', views.cart, name='cart')
 def cart(request, quantity=0, total=0, cart_items=None):
     # GET cart_item info
     try:
